@@ -5,7 +5,7 @@ const bcrypt = require('../utils/bcrypt');
 
 module.exports = {
   async create(request, response) {
-    const { name, username, password } = request.body;
+    const { name, username, password, image } = request.body;
 
     const loginid = crypto.randomBytes(16).toString('HEX');
 
@@ -16,6 +16,7 @@ module.exports = {
       name,
       username,
       password: encryptedPassword,
+      image,
     });
 
     return response.json();
@@ -25,6 +26,7 @@ module.exports = {
       'loginid',
       'name',
       'username',
+      'image',
     );
 
     return response.json({ users });
